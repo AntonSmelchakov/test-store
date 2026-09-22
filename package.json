@@ -1,0 +1,23 @@
+{
+  "name": "test-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "project:run": "concurrently \"pnpm start:db\" \"pnpm start:backend\" \"pnpm start:frontend\"",
+    "start:db": "pnpm -C backend run db:start",
+    "start:backend": "pnpm -C backend run start",
+    "start:frontend": "pnpm -C frontend run dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.9.0",
+  "dependencies": {
+    "concurrently": "^10.0.5",
+    "wait-on": "^9.1.0"
+  },
+  "devDependencies": {
+    "dotenv-cli": "^11.0.0"
+  }
+}
