@@ -1,8 +1,8 @@
 import { useShopCart } from "../../states/Shopcart";
 import type { ShopCartState } from "../../states/Shopcart";
-import css from "./ItemCard.module.css";
+import css from "./CheckoutItemCard.module.css";
 
-export function ItemCard({ itemInfo }) {
+export function CheckoutItemCard({ itemInfo }) {
   const addItemToShopCart = useShopCart(
     (state: ShopCartState) => state.addItem,
   );
@@ -10,17 +10,23 @@ export function ItemCard({ itemInfo }) {
     (state: ShopCartState) => state.removeItem,
   );
   const shopCartCount = useShopCart(
-    (state: ShopCartState) => state.items.get(itemInfo.id)?.quantity,
+    (state: ShopCartState) => state.items.get(itemInfo.id)?.quantity || 0,
   );
-  const unreservedStock = itemInfo.stock - itemInfo.reserved;
-  const noImageImage = "/image/no-image.png";
   const setTotalPrice = useShopCart(
     (state: ShopCartState) => state.setTotalPrice,
   );
   const totalPrice = useShopCart((state: ShopCartState) => state.totalPrice);
 
+  const unreservedStock = itemInfo.stock - itemInfo.reserved;
+  const noImageImage = "/image/no-image.png";
+
   return (
     <div className={css.cardWrap}>
+      {itemInfo.noStock && (
+        <div className={css.noStock}>
+          <h1>Упс, закончилось!</h1>
+        </div>
+      )}
       <div className={css.imageWrap}>
         <img
           src={itemInfo.image_url}
@@ -28,16 +34,12 @@ export function ItemCard({ itemInfo }) {
           onError={(e) => (e.currentTarget.src = noImageImage)}
         />
       </div>
-      <div className={css.infoWrap}>
-        <h5  className={css.name}>{itemInfo.name}</h5>
-        <p  className={css.description}>{itemInfo.description}</p>
-        <p  className={css.stock}>В наличии {unreservedStock} шт.</p>
-        <p  className={css.price}>{itemInfo.price} Р</p>
-      </div>
+      <h5 className={css.name}>{itemInfo.name}</h5>
+      <p className={css.stock}>В наличии {unreservedStock} шт.</p>
+      <p className={css.price}>{itemInfo.price * shopCartCount} Р</p>
       <div className={css.buttonWrap}>
         {!shopCartCount ? (
           <button
-            disabled={unreservedStock <=0}
             className={css.button}
             onClick={() => {
               addItemToShopCart(itemInfo.id);

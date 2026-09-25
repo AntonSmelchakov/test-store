@@ -1,2 +1,81 @@
+@font-face {
+    font-family: Jost;
+    font-style: normal;
+
+    font-display: swap;
+
+    src: url("/src/assets/fonts/Jost-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: Pacifico;
+    font-style: normal;
+
+    font-display: swap;
+
+    src: url("/src/assets/fonts/Pacifico-Regular.ttf");
+}
+
 :root {
+    --main-color: #d5f0ec;
+    --secondary-color: #f7c6cb;
+    --font-color: #000;
+    --page-padding: max(10px, 1dvw);
+
+    font-family: Jost, sans-serif;
+    font-size: max(1dvw, 1rem);
+    color: var(--font-color);
+    background: var(--main-color);
+}
+
+h1,
+h5,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Pacifico, sans-serif;
+    text-shadow: 5px 5px var(--secondary-color);
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.default-btn {
+    padding: 10px;
+    border: 2px solid var(--secondary-color);
+    border-radius: 50cqh;
+
+    background: var(--main-color);
+    box-shadow: 3px 3px var(--secondary-color);
+
+    transition:
+        box-shadow 0.1s linear,
+        background 0.3s ease-in-out,
+        transform 0.1s linear;
+
+    &:hover {
+        cursor: pointer;
+        background: oklch(from var(--main-color) l c 70deg);
+    }
+
+    &:active {
+        transform: scale(95%) translate(3px, 3px);
+        box-shadow: unset;
+    }
+
+    &:disabled {
+        transform: scale(95%) translate(3px, 3px);
+        box-shadow: unset;
+
+        &:hover {
+            cursor: inherit;
+            background: inherit;
+        }
+    }
 }

@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query"
 import { ItemCard } from "../../components/item-card/ItemCard";
+import css from "./Store.module.css"
 
 export function Store() {
   const { isPending, isError, data, error } = useQuery({
@@ -18,7 +19,7 @@ export function Store() {
   console.log(error);
 
   return (
-    <div>
+    <div className={css.storeWrap} >
       {isPending && (
         <p>Загрузка...</p>
         )}

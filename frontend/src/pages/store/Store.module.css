@@ -1,0 +1,9 @@
+.store-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(max(200px, 20%), 1fr));
+    gap: 1vw;
+
+    box-sizing: border-box;
+    width: 100%;
+    padding-inline: var(--page-padding);
+}

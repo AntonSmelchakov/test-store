@@ -1,0 +1,82 @@
+.checkout-wrap {
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    width: 0;
+    height: 100%;
+
+    background: transparent;
+
+    &.open {
+        width: 100%;
+    }
+}
+
+.shadow-wrap {
+    position: absolute;
+    inset: 0 0 auto auto;
+
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+    background: #000;
+
+    transition: opacity 0.2s ease-in-out;
+
+    .checkout-wrap.open > & {
+        opacity: 0.2;
+    }
+}
+
+.checkout-area {
+    position: sticky;
+    top: 5dvh;
+    left: 100%;
+    transform: translateX(100%);
+
+    overflow: auto;
+    display: grid;
+
+    width: 80dvw;
+    height: 90dvh;
+    border-radius: 3vw 0 0 3vw;
+
+    background: var(--main-color);
+
+    transition: transform 0.3s ease-in-out;
+
+    .checkout-wrap.open > & {
+        transform: translateX(0%);
+    }
+}
+
+.checkout-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 100px;
+    padding: 20px;
+
+    & > h1 {
+        text-align: end;
+    }
+}
+
+.btn {
+    composes: default-btn from global;
+    aspect-ratio: 1/1;
+    height: 50%;
+}
+
+.items {
+    overflow: auto;
+    height: 83%;
+    padding: 20px;
+}
+
+.form {
+    padding: 20px;
+}

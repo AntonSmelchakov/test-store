@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 10dvh;
+    padding-block: 20px;
+    padding-inline: var(--page-padding);
+
+    & h1 {
+        font-size: 3rem;
+    }
+}
+
+.shop-cart-btn {
+    composes: default-btn from global;
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.shop-cart-count {
+    position: absolute;
+    inset: 0 auto auto 0;
+    transform: translate(-28%, -13%);
+
+    font-family: Pacifico, sans-serif;
+    font-size: 1rem;
+
+    & > span {
+        &:first-child {
+            -webkit-text-stroke: 6px var(--secondary-color);
+        }
+
+        &:last-child {
+            position: absolute;
+            inset: 50% 50% auto auto;
+            transform: translate(50%, -50%);
+        }
+    }
+}
